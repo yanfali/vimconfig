@@ -9,6 +9,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Plugins
 "
+
 Plugin 'vim-syntastic/syntastic'
 Plugin 'fatih/vim-go'
 Plugin 'majutsushi/tagbar'
@@ -23,6 +24,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-surround'
 
 call vundle#end()
 
