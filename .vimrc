@@ -26,6 +26,7 @@ Plugin 'elixir-lang/vim-elixir'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
+Plugin 'posva/vim-vue'
 
 call vundle#end()
 
@@ -85,7 +86,10 @@ set foldlevel=100             "Don't autofold
 nnoremap <silent> <f6> :NERDTreeToggle<cr>
 nnoremap <silent> <f3> :NumbersToggle<cr>
 nnoremap - :Switch<cr>
-noremap <c-j> :Autoformat<CR>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 "autocmd FileType js noremap <buffer> <c-j> :call JsBeautify()<cr>
 "autocmd FileType html noremap <buffer> <c-j> :call HtmlBeautify()<cr>
 "autocmd FileType ejs noremap <buffer> <c-j> :call HtmlBeautify()<cr>
