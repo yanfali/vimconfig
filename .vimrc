@@ -27,6 +27,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'posva/vim-vue'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'ap/vim-css-color'
 
 call vundle#end()
 
