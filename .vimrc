@@ -61,12 +61,19 @@ let g:solarized_termcolors=256
 let g:jsx_ext_required = 0
 let g:syntastic_javascript_checkers = ['eslint']
 colorscheme solarized
+set background=dark
 
 let g:Powerline_symbols = 'fancy'
 set encoding=utf-8
 set laststatus=2
-set guifont=Menlo:h13
 set fillchars+=stl:\ ,stlnc:\
+if has("gui_running")
+  if has("gui_gtk2") || has("gui_gtk3")
+      set guifont=Inconsolata\ 12
+  else
+      set guifont=Menlo:h13
+  endif
+endif
 
 " experimental: run after gui has been started
 " report breakage in this case, please
