@@ -29,6 +29,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'posva/vim-vue'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ap/vim-css-color'
+Plugin 'Quramy/tsuquyomi'
+Plugin 'leafgarland/typescript-vim'
 
 call vundle#end()
 
@@ -59,7 +61,7 @@ set t_Co=256
 let g:solarized_termtrans = 1
 let g:solarized_termcolors=256
 let g:jsx_ext_required = 0
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['eslint', 'jshint']
 colorscheme solarized
 set background=dark
 
@@ -95,10 +97,13 @@ set foldlevel=100             "Don't autofold
 nnoremap <silent> <f6> :NERDTreeToggle<cr>
 nnoremap <silent> <f3> :NumbersToggle<cr>
 nnoremap - :Switch<cr>
+
+" windowing key bindings
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
 "autocmd FileType js noremap <buffer> <c-j> :call JsBeautify()<cr>
 "autocmd FileType html noremap <buffer> <c-j> :call HtmlBeautify()<cr>
 "autocmd FileType ejs noremap <buffer> <c-j> :call HtmlBeautify()<cr>
@@ -109,6 +114,7 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <silent> <leader>es :Esformatter<CR>
 vnoremap <silent> <leader>es :EsformatterVisual<CR>
 
+" vim-go settings
 " jump to first detected error
 let g:syntastic_auto_jump=1
 " error window opens when errors are detected and closes when none
@@ -135,7 +141,7 @@ let g:go_metalinter_autosave = 1
 au BufWritePre * :%s/\s\+$//e
 set viminfo='100,\"2500,:200,%,n~/.viminfo
 
-
+" vim-go key bindings
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
@@ -145,23 +151,6 @@ au FileType go nmap <leader>s <Plug>(go-implements)
 au FileType go nmap <leader>i <Plug>(go-info)
 au FileType go nmap <leader>e <Plug>(go-rename)
 
-let coffee_lint_options = '-f /Users/yanfali/.coffeelint.json'
-
-if executable('coffeetags')
-  let g:tagbar_type_coffee = {
-        \ 'ctagsbin' : 'coffeetags',
-        \ 'ctagsargs' : '--include-vars',
-        \ 'kinds' : [
-        \ 'f:functions',
-        \ 'o:object',
-        \ ],
-        \ 'sro' : ".",
-        \ 'kind2scope' : {
-        \ 'f' : 'object',
-        \ 'o' : 'object',
-        \ }
-        \ }
-endif
 let g:tagbar_type_javascript = {
     \ 'ctagsbin' : '/Users/yanfali/.nvm/versions/node/v4.2.1/bin/jsctags'
 \ }
