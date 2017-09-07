@@ -10,7 +10,8 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugins
 "
 
-Plugin 'vim-syntastic/syntastic'
+"Plugin 'vim-syntastic/syntastic'
+Plugin 'w0rp/ale'
 Plugin 'fatih/vim-go'
 Plugin 'majutsushi/tagbar'
 Plugin 'vim-airline/vim-airline'
@@ -27,7 +28,9 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'posva/vim-vue'
+if !has('gui_running')
 Plugin 'Valloric/YouCompleteMe'
+endif
 Plugin 'ap/vim-css-color'
 Plugin 'Quramy/tsuquyomi'
 Plugin 'leafgarland/typescript-vim'
