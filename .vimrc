@@ -41,6 +41,7 @@ set tabstop=4
 set shiftwidth=4
 set shell=bash
 let mapleader=","
+let g:airline#extensions#ale#enabled = 1
 set updatetime=250 " git-gutter runs too slowly without this
 
 " set expandtab
