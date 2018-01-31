@@ -10,7 +10,6 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugins
 "
 
-"Plugin 'vim-syntastic/syntastic'
 Plugin 'w0rp/ale'
 Plugin 'fatih/vim-go'
 Plugin 'majutsushi/tagbar'
@@ -43,6 +42,11 @@ set shell=bash
 let mapleader=","
 let g:airline#extensions#ale#enabled = 1
 set updatetime=250 " git-gutter runs too slowly without this
+let g:ale_linters = {
+\   'javascript': ['standard', 'eslint'],
+\}
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " set expandtab
 " set list
@@ -65,7 +69,7 @@ set t_Co=256
 let g:solarized_termtrans = 1
 let g:solarized_termcolors=256
 let g:jsx_ext_required = 0
-let g:syntastic_javascript_checkers = ['eslint', 'jshint']
+" let g:syntastic_javascript_checkers = ['eslint', 'jshint']
 colorscheme solarized
 set background=dark
 
@@ -103,10 +107,10 @@ nnoremap <silent> <f3> :NumbersToggle<cr>
 nnoremap - :Switch<cr>
 
 " windowing key bindings
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+"nnoremap <C-J> <C-W><C-J>
+"nnoremap <C-K> <C-W><C-K>
+"nnoremap <C-L> <C-W><C-L>
+"nnoremap <C-H> <C-W><C-H>
 
 "autocmd FileType js noremap <buffer> <c-j> :call JsBeautify()<cr>
 "autocmd FileType html noremap <buffer> <c-j> :call HtmlBeautify()<cr>
@@ -115,12 +119,10 @@ nnoremap <C-H> <C-W><C-H>
 "autocmd FileType scss noremap <buffer> <c-j> :call CSSBeautify()<cr>
 "autocmd FileType html compiler html
 " will run esformatter after pressing <leader> followed by the 'e' and 's' keys
-nnoremap <silent> <leader>es :Esformatter<CR>
-vnoremap <silent> <leader>es :EsformatterVisual<CR>
 
 " vim-go settings
 " jump to first detected error
-let g:syntastic_auto_jump=1
+"let g:syntastic_auto_jump=1
 " error window opens when errors are detected and closes when none
 let g:syntastic_auto_loc_list=1
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
