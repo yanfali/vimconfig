@@ -47,15 +47,29 @@ let g:ale_linters = {
 \}
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+" mypy config for ale from nic
+let g:ale_python_pylint_options = '-rcfile ~/.pylintrc'
+let g:ale_python_mypy_options = '--python-version 3.6 --follow-imports silent'
+let g:ale_python_flake8_options = '--max-line-length=119 --ignore=E402'
 
 " set expandtab
 " set list
 set number
 
-au BufRead,BufNewFile *.html,*.php,*.js,*.css,*.rb,*.ejs set shiftwidth=4
-au BufRead,BufNewFile *.html,*.php,*.js,*.css,*.rb,*.ejs set expandtab
-au BufRead,BufNewFile *.html,*.php,*.js,*.css,*.rb,*.ejs set tabstop=4
-au BufRead,BufNewFile *.html,*.php,*.js,*.css,*.rb,*.ejs set softtabstop=4
+au BufRead,BufNewFile *.html,*.php,*.js,*.css,*.rb,*.ejs,*.go set shiftwidth=4
+au BufRead,BufNewFile *.html,*.php,*.js,*.css,*.rb,*.ejs,*.go set expandtab
+au BufRead,BufNewFile *.html,*.php,*.js,*.css,*.rb,*.ejs,*.go set tabstop=4
+au BufRead,BufNewFile *.html,*.php,*.js,*.css,*.rb,*.ejs,*.go set softtabstop=4
+
+" python pep 8
+au BufRead,BufNewFile *.py set textwidth=79 " lines longer than 79 cols broken
+au BufRead,BufNewFile *.py set shiftwidth=4
+au BufRead,BufNewFile *.py set tabstop=4
+au BufRead,BufNewFile *.py set expandtab
+au BufRead,BufNewFile *.py set softtabstop=4
+au BufRead,BufNewFile *.py set shiftround
+au BufRead,BufNewFile *.py set autoindent
+
 autocmd FileType qf wincmd J
 
 
