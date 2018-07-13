@@ -1,3 +1,7 @@
+if has('python3')
+  silent! python3 1
+endif
+
 set nocompatible " be iMproved
 filetype off
 
@@ -17,7 +21,6 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'chrisbra/NrrwRgn'
 Plugin 'kien/ctrlp.vim'
@@ -27,12 +30,19 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'posva/vim-vue'
+Plugin 'prettier/vim-prettier'
 if !has('gui_running')
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 endif
 Plugin 'ap/vim-css-color'
 Plugin 'Quramy/tsuquyomi'
 Plugin 'leafgarland/typescript-vim'
+"
+" markdown
+Plugin 'reedes/vim-pencil'
+Plugin 'tpope/vim-markdown'
+Plugin 'jtratner/vim-flavored-markdown'
+Plugin 'LanguageTool'
 
 call vundle#end()
 
@@ -43,7 +53,7 @@ let mapleader=","
 let g:airline#extensions#ale#enabled = 1
 set updatetime=250 " git-gutter runs too slowly without this
 let g:ale_linters = {
-\   'javascript': ['standard', 'eslint'],
+\   'javascript': ['eslint'],
 \}
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
@@ -207,3 +217,14 @@ nnoremap <f8> :TagbarToggle<cr>
 if has("gui_running")
 	autocmd BufEnter *.go nested TagbarOpen
 endif
+
+" Settings for Writting
+let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
+let g:languagetool_jar  = '/opt/languagetool/languagetool-commandline.jar'
+
+" Vim-pencil Configuration
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init()
+augroup END
