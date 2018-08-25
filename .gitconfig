@@ -1,0 +1,9 @@
+[alias]
+	a = add -p
+	co = checkout
+	cob = checkout -b
+	st = status
+	br = branch
+	df = diff -u
+	dfc = diff -u --cached
+
