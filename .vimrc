@@ -5,49 +5,49 @@ endif
 set nocompatible " be iMproved
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
-
-" let vundle manage itself
-Plugin 'VundleVim/Vundle.vim'
-
-" Plugins
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'altercation/vim-colors-solarized'
+Plug 'w0rp/ale'
+Plug 'majutsushi/tagbar', { 'for': ['go'] }
+Plug 'fatih/vim-go', { 'for': ['go'] }
+Plug 'vim-airline/vim-airline'
+Plug 'myusuf3/numbers.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'chrisbra/NrrwRgn'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'posva/vim-vue', { 'for': ['js', 'vue'] }
+Plug 'prettier/vim-prettier', { 'for': ['js', 'vue', 'html', 'css'] }
+Plug 'ap/vim-css-color', { 'for': ['js', 'vue', 'html', 'css'] }
+Plug 'leafgarland/typescript-vim', { 'for': ['ts'] }
+Plug 'jparise/vim-graphql'
+Plug 'tpope/vim-markdown', { 'for': ['md'] }
+Plug 'rhysd/vim-grammarous', { 'for': ['txt', 'md'] }
+Plug 'jtratner/vim-flavored-markdown', { 'for': ['md'] }
+Plug 'reedes/vim-pencil', { 'for': ['txt', 'md'] }
+call plug#end()
 "
-
-Plugin 'w0rp/ale'
-Plugin 'fatih/vim-go'
-Plugin 'majutsushi/tagbar'
-Plugin 'vim-airline/vim-airline'
-Plugin 'myusuf3/numbers.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'chrisbra/NrrwRgn'
-Plugin 'kien/ctrlp.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-surround'
-Plugin 'posva/vim-vue'
-Plugin 'prettier/vim-prettier'
-if !has('gui_running')
-"Plugin 'Valloric/YouCompleteMe'
-endif
-Plugin 'ap/vim-css-color'
-Plugin 'Quramy/tsuquyomi'
-Plugin 'leafgarland/typescript-vim'
+"Plugin 'ternjs/tern_for_vim'
+"Plugin 'kien/ctrlp.vim'
+"Plugin 'elixir-lang/vim-elixir'
+"Plugin 'scrooloose/nerdtree'
+"if !has('gui_running')
+""Plugin 'Valloric/YouCompleteMe'
+"endif
+"Plugin 'Quramy/tsuquyomi'
+""
+"" markdown
 "
-" markdown
-Plugin 'reedes/vim-pencil'
-Plugin 'tpope/vim-markdown'
-Plugin 'jtratner/vim-flavored-markdown'
-Plugin 'LanguageTool'
+"call vundle#end()
 
-call vundle#end()
+" Tsyququyomi
+"
+let g:tsuquyomi_completion_detail = 1
 
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set shell=bash
 let mapleader=","
 let g:airline#extensions#ale#enabled = 1
@@ -62,7 +62,7 @@ let g:ale_python_pylint_options = '-rcfile ~/.pylintrc'
 let g:ale_python_mypy_options = '--python-version 3.6 --follow-imports silent'
 let g:ale_python_flake8_options = '--max-line-length=119 --ignore=E402'
 
-" set expandtab
+set expandtab
 " set list
 set number
 
@@ -103,9 +103,10 @@ set laststatus=2
 set fillchars+=stl:\ ,stlnc:\
 if has("gui_running")
   if has("gui_gtk2") || has("gui_gtk3")
-      set guifont=Inconsolata\ 12
+      set guifont=Inconsolata\ 16
+      " set guifont=Inconsolata\ 12
   else
-      set guifont=Menlo:h13
+      set guifont=Menlo:h15
   endif
 endif
 
@@ -228,3 +229,14 @@ augroup pencil
   autocmd FileType markdown,mkd call pencil#init()
   autocmd FileType text         call pencil#init()
 augroup END
+
+" Up/down/left/right {{{
+ " unnoremap h h|xnoremap h h|onoremap h h|
+ "   nnoremap n j|xnoremap n j|onoremap n j|
+ "   nnoremap e k|xnoremap e k|onoremap e k|
+ "   nnoremap i l|xnoremap i l|onoremap i l|
+" }}}
+"
+
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
