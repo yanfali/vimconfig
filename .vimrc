@@ -18,17 +18,20 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'chrisbra/NrrwRgn'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'posva/vim-vue', { 'for': ['js', 'vue'] }
-Plug 'prettier/vim-prettier', { 'for': ['js', 'vue', 'html', 'css'] }
-Plug 'ap/vim-css-color', { 'for': ['js', 'vue', 'html', 'css'] }
-Plug 'leafgarland/typescript-vim', { 'for': ['ts'] }
+Plug 'posva/vim-vue', { 'for': ['javascript', 'vue'] }
+Plug 'prettier/vim-prettier', { 'for': ['javascript', 'vue', 'html', 'css'] }
+Plug 'ap/vim-css-color', { 'for': ['javascript', 'vue', 'html', 'css'] }
+Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
 Plug 'jparise/vim-graphql'
-Plug 'tpope/vim-markdown', { 'for': ['md'] }
-Plug 'rhysd/vim-grammarous', { 'for': ['txt', 'md'] }
-Plug 'jtratner/vim-flavored-markdown', { 'for': ['md'] }
-Plug 'reedes/vim-pencil', { 'for': ['txt', 'md'] }
+Plug 'tpope/vim-markdown', { 'for': ['markdown'] }
+Plug 'rhysd/vim-grammarous', { 'for': ['text', 'markdown'] }
+Plug 'jtratner/vim-flavored-markdown', { 'for': ['markdown'] }
+Plug 'reedes/vim-pencil', { 'for': ['text', 'markdown'] }
+Plug 'hail2u/vim-css3-syntax', { 'for': 'css, vue' }
+Plug 'pangloss/vim-javascript', { 'for': ['vue','javascript'] }
 call plug#end()
 "
+" Plug 'morhetz/gruvbox'
 "Plugin 'ternjs/tern_for_vim'
 "Plugin 'kien/ctrlp.vim'
 "Plugin 'elixir-lang/vim-elixir'
@@ -238,5 +241,6 @@ augroup END
 " }}}
 "
 
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+"let g:prettier#autoformat = 0
+"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.vue PrettierAsync
