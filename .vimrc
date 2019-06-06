@@ -3,7 +3,6 @@ if has('python3')
 endif
 
 set nocompatible " be iMproved
-filetype off
 
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
@@ -29,11 +28,14 @@ Plug 'jtratner/vim-flavored-markdown', { 'for': ['markdown'] }
 Plug 'reedes/vim-pencil', { 'for': ['text', 'markdown'] }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css, vue' }
 Plug 'pangloss/vim-javascript', { 'for': ['vue','javascript'] }
+Plug 'kien/ctrlp.vim'
+Plug 'jremmen/vim-ripgrep'
+Plug 'stefandtw/quickfix-reflector.vim'
+Plug 'junegunn/fzf.vim'
 call plug#end()
 "
 " Plug 'morhetz/gruvbox'
 "Plugin 'ternjs/tern_for_vim'
-"Plugin 'kien/ctrlp.vim'
 "Plugin 'elixir-lang/vim-elixir'
 "Plugin 'scrooloose/nerdtree'
 "if !has('gui_running')
@@ -48,6 +50,17 @@ call plug#end()
 " Tsyququyomi
 "
 let g:tsuquyomi_completion_detail = 1
+let g:rg_command = 'rg --vimgrep -S'
+
+let g:ale_fixers = {
+      \ 'typescript': ['prettier','tslint']
+\}
+let g:ale_fix_on_save = 1
+" FZF
+set rtp+=/usr/local/opt/fzf
+" Likewise, Files command with preview window
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 set tabstop=2
 set shiftwidth=2
@@ -57,6 +70,7 @@ let g:airline#extensions#ale#enabled = 1
 set updatetime=250 " git-gutter runs too slowly without this
 let g:ale_linters = {
 \   'javascript': ['eslint'],
+\   'typescript': ['tslint'],
 \}
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
@@ -91,6 +105,7 @@ endif
 
 syntax on
 filetype plugin indent on
+packadd! matchit
 
 set t_Co=256
 let g:solarized_termtrans = 1
@@ -133,6 +148,8 @@ set foldlevel=100             "Don't autofold
 nnoremap <silent> <f6> :NERDTreeToggle<cr>
 nnoremap <silent> <f3> :NumbersToggle<cr>
 nnoremap - :Switch<cr>
+noremap <silent> <leader>o :Files<cr>
+noremap <silent> <leader>O :Files!<cr>
 
 " windowing key bindings
 "nnoremap <C-J> <C-W><C-J>
