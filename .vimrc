@@ -32,6 +32,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'junegunn/fzf.vim'
+Plug 'ciaranm/securemodelines'
 call plug#end()
 "
 " Plug 'morhetz/gruvbox'
