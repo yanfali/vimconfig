@@ -21,6 +21,7 @@ Plug 'posva/vim-vue', { 'for': ['javascript', 'vue'] }
 Plug 'prettier/vim-prettier', { 'for': ['javascript', 'vue', 'html', 'css'] }
 Plug 'ap/vim-css-color', { 'for': ['javascript', 'vue', 'html', 'css'] }
 Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
+Plug 'Quramy/tsuquyomi', { 'for': ['typescript'] }
 Plug 'jparise/vim-graphql'
 Plug 'tpope/vim-markdown', { 'for': ['markdown'] }
 Plug 'rhysd/vim-grammarous', { 'for': ['text', 'markdown'] }
@@ -53,10 +54,6 @@ call plug#end()
 let g:tsuquyomi_completion_detail = 1
 let g:rg_command = 'rg --vimgrep -S'
 
-let g:ale_fixers = {
-      \ 'typescript': ['prettier','tslint']
-\}
-let g:ale_fix_on_save = 1
 " FZF
 set rtp+=/usr/local/opt/fzf
 " Likewise, Files command with preview window
@@ -69,9 +66,18 @@ set shell=bash
 let mapleader=","
 let g:airline#extensions#ale#enabled = 1
 set updatetime=250 " git-gutter runs too slowly without this
+
+let g:ale_fix_on_save = 1
+let g:ale_linters_explicit = 1
 let g:ale_linters = {
 \   'javascript': ['eslint'],
-\   'typescript': ['tslint'],
+\   'typescript': ['eslint'],
+\   'python': ['flake8'],
+\}
+let g:ale_fixers = {
+      \ 'typescript': ['prettier'],
+      \ 'javascript': ['prettier'],
+      \ 'python': ['yapf']
 \}
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
@@ -137,7 +143,6 @@ set ignorecase "ignore case when searching
 set infercase
 set incsearch
 set smartcase "override ignorecase when search pattern is on
-set gdefault "make flag g by default for substitute
 set hlsearch
 set foldenable
 set foldmethod=syntax
