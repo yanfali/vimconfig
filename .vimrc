@@ -8,9 +8,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'altercation/vim-colors-solarized'
-Plug 'w0rp/ale'
+Plug 'w0rp/ale', { 'for': ['sccs','css','vue','javascript','typescript','json','python'] }
 Plug 'majutsushi/tagbar', { 'for': ['go'] }
 Plug 'fatih/vim-go', { 'for': ['go'] }
+"Plug 'govim/govim', { 'for': ['go'] }
 Plug 'vim-airline/vim-airline'
 Plug 'myusuf3/numbers.vim'
 Plug 'tpope/vim-fugitive'
@@ -34,6 +35,8 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'ciaranm/securemodelines'
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'freitass/todo.txt-vim'
 call plug#end()
 "
 " Plug 'morhetz/gruvbox'
@@ -49,9 +52,11 @@ call plug#end()
 "
 "call vundle#end()
 
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+
 " Tsyququyomi
 "
-let g:tsuquyomi_completion_detail = 1
 let g:rg_command = 'rg --vimgrep -S'
 
 " FZF
@@ -70,14 +75,22 @@ set updatetime=250 " git-gutter runs too slowly without this
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
+\   'scss': ['prettier'],
+\   'css': ['prettier'],
+\   'vue': ['eslint'],
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint'],
+\   'json': ['prettier'],
 \   'python': ['flake8'],
 \}
 let g:ale_fixers = {
+      \   'json': ['prettier'],
+      \ 'css': ['prettier'],
+      \ 'scss': ['prettier'],
+      \ 'vue': ['prettier'],
       \ 'typescript': ['prettier'],
       \ 'javascript': ['prettier'],
-      \ 'python': ['yapf']
+      \ 'python': ['yapf'],
 \}
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
@@ -106,10 +119,6 @@ au BufRead,BufNewFile *.py set autoindent
 
 autocmd FileType qf wincmd J
 
-
-if !has('gui_running')
-endif
-
 syntax on
 filetype plugin indent on
 packadd! matchit
@@ -133,6 +142,7 @@ if has("gui_running")
   else
       set guifont=Menlo:h15
   endif
+"	autocmd BufEnter *.go nested TagbarOpen
 endif
 
 " experimental: run after gui has been started
@@ -148,7 +158,7 @@ set foldenable
 set foldmethod=syntax
 set foldopen=block,hor,tag    " what movements open folds
 set foldopen+=percent,mark
-set foldopen+=quickfix
+"set foldopen+=quickfix
 set foldlevel=100             "Don't autofold
 
 nnoremap <silent> <f6> :NERDTreeToggle<cr>
@@ -173,14 +183,6 @@ noremap <silent> <leader>O :Files!<cr>
 
 " vim-go settings
 " jump to first detected error
-"let g:syntastic_auto_jump=1
-" error window opens when errors are detected and closes when none
-let g:syntastic_auto_loc_list=1
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map= { 'mode':'active', 'active_filetypes':[], 'passive_filetypes': ['ejs', 'html', 'xhtml', 'scss', 'go']}
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:go_list_type = "quickfix"
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_fields = 1
@@ -188,14 +190,20 @@ let g:go_highlight_structs = 1
 let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-" show types under cursor
+"" show types under cursor
 "let g:go_auto_type_info = 1
 let g:go_highlight_space_tab_error = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-let g:go_metalinter_autosave = 1
+"let g:go_def_mapping_enabled = 0
+"let g:go_metalinter_enabled = ["deadcode", "errcheck", "gosimple", "ineffassign", "staticcheck", "structcheck", "typecheck", "unused", "varcheck"]
+let g:go_metalinter_autosave_enabled = ["govet","golint"]
+let g:go_metalinter_autosave = 0
+let g:go_list_type = "quickfix"
 
-au BufWritePre * :%s/\s\+$//e
+
+" remove spaces on ends of lines
+"au BufWritePre * :%s/\s\+$//e
 set viminfo='100,\"2500,:200,%,n~/.viminfo
 
 " vim-go key bindings
@@ -241,9 +249,6 @@ let g:tagbar_type_go = {
 \ }
 nnoremap <f8> :TagbarToggle<cr>
 
-if has("gui_running")
-	autocmd BufEnter *.go nested TagbarOpen
-endif
 
 " Settings for Writting
 let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
@@ -266,4 +271,7 @@ augroup END
 
 "let g:prettier#autoformat = 0
 "autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-autocmd BufWritePre *.js,*.jsx,*.vue PrettierAsync
+" validate with prettier on save
+"autocmd BufWritePre *.js,*.jsx,*.vue PrettierAsync
+
+source ~/.vim/coc.vimrc
