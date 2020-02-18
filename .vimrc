@@ -8,10 +8,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'altercation/vim-colors-solarized'
-Plug 'w0rp/ale', { 'for': ['sccs','css','vue','javascript','typescript','json','python'] }
+Plug 'w0rp/ale', { 'for': ['sccs','css','vue','javascript','json','python'] }
 Plug 'majutsushi/tagbar', { 'for': ['go'] }
 Plug 'fatih/vim-go', { 'for': ['go'] }
-"Plug 'govim/govim', { 'for': ['go'] }
 Plug 'vim-airline/vim-airline'
 Plug 'myusuf3/numbers.vim'
 Plug 'tpope/vim-fugitive'
@@ -21,8 +20,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'posva/vim-vue', { 'for': ['javascript', 'vue'] }
 Plug 'prettier/vim-prettier', { 'for': ['javascript', 'vue', 'html', 'css'] }
 Plug 'ap/vim-css-color', { 'for': ['javascript', 'vue', 'html', 'css'] }
-Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
-Plug 'Quramy/tsuquyomi', { 'for': ['typescript'] }
 Plug 'jparise/vim-graphql'
 Plug 'tpope/vim-markdown', { 'for': ['markdown'] }
 Plug 'rhysd/vim-grammarous', { 'for': ['text', 'markdown'] }
@@ -35,7 +32,8 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'ciaranm/securemodelines'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ianks/vim-tsx',
 Plug 'freitass/todo.txt-vim'
 call plug#end()
 "
