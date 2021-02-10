@@ -4,11 +4,28 @@ endif
 
 set nocompatible " be iMproved
 
+let g:coc_global_extensions = [
+  \ 'coc-json',
+  \ 'coc-yaml',
+  \ 'coc-html',
+  \ 'coc-css',
+  \ 'coc-tsserver',
+  \ 'coc-eslint',
+  \ 'coc-stylelint',
+  \ 'coc-prettier',
+  \ 'coc-highlight',
+  \ 'coc-emmet',
+  \ 'coc-snippets',
+  \ 'coc-vetur',
+  \ 'coc-angular',
+  \ 'coc-git'
+  \ ]
+
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'altercation/vim-colors-solarized'
-Plug 'w0rp/ale', { 'for': ['sccs','css','vue','javascript','json','python'] }
+"Plug 'w0rp/ale', { 'for': ['sccs','css','vue','javascript','typescript','json','python'] }
 Plug 'majutsushi/tagbar', { 'for': ['go'] }
 Plug 'fatih/vim-go', { 'for': ['go'] }
 Plug 'vim-airline/vim-airline'
@@ -26,13 +43,14 @@ Plug 'rhysd/vim-grammarous', { 'for': ['text', 'markdown'] }
 Plug 'jtratner/vim-flavored-markdown', { 'for': ['markdown'] }
 Plug 'reedes/vim-pencil', { 'for': ['text', 'markdown'] }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css, vue' }
+Plug 'jonsmithers/vim-html-template-literals', { 'for': 'js' }
 Plug 'pangloss/vim-javascript', { 'for': ['vue','javascript'] }
 Plug 'kien/ctrlp.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'ciaranm/securemodelines'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'tag': '\*', 'do': './install.sh'}
 Plug 'ianks/vim-tsx',
 Plug 'freitass/todo.txt-vim'
 call plug#end()
@@ -77,12 +95,12 @@ let g:ale_linters = {
 \   'css': ['prettier'],
 \   'vue': ['eslint'],
 \   'javascript': ['eslint'],
-\   'typescript': ['eslint'],
+\   'typescript': ['tsserver'],
 \   'json': ['prettier'],
 \   'python': ['flake8'],
 \}
 let g:ale_fixers = {
-      \   'json': ['prettier'],
+      \ 'json': ['prettier'],
       \ 'css': ['prettier'],
       \ 'scss': ['prettier'],
       \ 'vue': ['prettier'],
