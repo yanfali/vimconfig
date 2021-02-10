@@ -5,6 +5,6 @@
   "tsserver.log": "verbose",
   "tsserver.trace.server": "verbose",
   "eslint.run": "onSave",
-  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "js", "vue", "ts", "tsx"],
+  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "html", "javascript.jsx", "javascript", "vue", "typescript", "typescriptreact"],
   "prettier.disableLanguages": []
 }
