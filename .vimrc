@@ -34,7 +34,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'chrisbra/NrrwRgn'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'posva/vim-vue', { 'for': ['javascript', 'vue'] }
+"Plug 'posva/vim-vue', { 'for': ['javascript', 'vue'] }
 Plug 'prettier/vim-prettier', { 'for': ['javascript', 'vue', 'html', 'css'] }
 Plug 'ap/vim-css-color', { 'for': ['javascript', 'vue', 'html', 'css'] }
 Plug 'jparise/vim-graphql'
@@ -54,6 +54,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release', 'tag': '\*', 'do': './install.sh
 Plug 'ianks/vim-tsx',
 Plug 'freitass/todo.txt-vim'
 call plug#end()
+
+let g:LanguageClient_serverCommands = {
+    \ 'vue': ['vls']
+    \ }
 "
 " Plug 'morhetz/gruvbox'
 "Plugin 'ternjs/tern_for_vim'

@@ -6,5 +6,7 @@
   "tsserver.trace.server": "verbose",
   "eslint.run": "onSave",
   "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "html", "javascript.jsx", "javascript", "vue", "typescript", "typescriptreact"],
-  "prettier.disableLanguages": []
+  "prettier.disableLanguages": [],
+  "typescript.updateImportsOnFileMove.enable": true,
+  "vetur.useWorkspaceDependencies": true
 }
